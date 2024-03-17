@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "cy:open": "npx cypress open",
     "cy:run": "npx cypress run",
-    "cy:run:dashboard": "npx cypress run --record --d37d68fc-e594-4201-8b0e-dbc9c60ac68a"
+    "cy:run:dashboard": "npx cypress run --record --d37d68fc-e594-4201-8b0e-dbc9c60ac68a",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
