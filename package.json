@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "cy:open": "npx cypress open",
     "cy:run": "npx cypress run",
-    "cy:run:dashboard": "npx cypress run --record --d37d68fc-e594-4201-8b0e-dbc9c60ac68a",
+    "cy:run:staging":"npx cypress run --config-file cypress-staging.config.js",
+    "cy:run:main": "npx cypress run --config-file cypress-main.config.js",
+    "cy:run:dashboard:main": "npx cypress run --config-file cypress-main.config.js --record --key 6ea58fd2-8b2e-4bbc-9ded-0522425d26bc",
+    "cy:run:dashboard:staging": "npx cypress run --config-file cypress-staging.config.js --record --key 6ea58fd2-8b2e-4bbc-9ded-0522425d26bc",
     "start": "node server.js"
   },
   "keywords": [],
