@@ -1,5 +1,3 @@
-const { nth } = require("lodash")
-
 //1.Load page
 describe('Page Load Test', () => {
   it('Should load the page successfully', () => {
