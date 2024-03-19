@@ -10,7 +10,7 @@
     "cy:run:main": "npx cypress run --config-file cypress-main.config.js",
     "cy:run:main:chrome": "npx cypress run --config-file cypress-main.config.js --browser chrome",
     "cy:run:main:electron": "npx cypress run --config-file cypress-main.config.js --browser electron",
-    "cy:run:main:chromeANDelectronboth":"npm run cy:run:main:electron && cy:run:main:chrome",
+    "cy:run:main:chromeANDelectron":"npm run cy:run:main:electron && cy:run:main:chrome",
     "cy:run:dashboard:main":"npx cypress run --config-file cypress-main.config.js --record --key 6ea58fd2-8b2e-4bbc-9ded-0522425d26bc",
     "cy:run:dashboard:staging": "npx cypress run --config-file cypress-staging.config.js --record --key 6ea58fd2-8b2e-4bbc-9ded-0522425d26bc",
     "start": "node server.js"
