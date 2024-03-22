@@ -48,62 +48,77 @@ describe('Login Test', () => {
       });
     });
 //6.Task
-        describe('Login Test', () => {
-    it('Should navigate to Task page from Entities menu', () => {
-     
-        cy.get('#entity-menu').click();
-        cy.get('#entity-menu > div > a:nth-child(1)').click();
-        cy.url().should('include', '/task?page=1&sort=id,asc');
-        cy.get('#task-heading').should('include.text', 'Tasks');
-    });
+describe('Entities menu', () => {
+  it('Should navigate to Task page from Entities menu', () => {
+    cy.get('#entity-menu').click(); // Находим меню с идентификатором #entity-menu и кликаем по нему
+    cy.get('#entity-menu > a').click(); // Затем находим ссылку внутри меню и кликаем по ней
+    cy.url().should('include', '/task?page=1&sort=id,asc'); // Проверяем, что мы перешли на страницу задач
+    cy.get('#task-heading').should('include.text', 'Tasks'); // Проверяем, что заголовок страницы содержит текст 'Tasks'
+  }); 
+})      
 //7.User Task
-    it('Should navigate to User Task page from Entities menu', () => {
-        
-        cy.get('#entity-menu').click();
-        cy.get('#entity-menu > div > a:nth-child(2)').click();
-        cy.url().should('include', '/user-task');
-        cy.get('#user-task-heading').should('include.text', 'User Tasks');
-    });
-
-    it('Should navigate to Home page after clicking on a specific element', () => {
-      cy.contains('specific-element').click();
-      cy.get('li[class="nav-item"]').should('be.visible').click();
-      cy.url().should('eq', 'https://sqlverifier-live-6e21ca0ed768.herokuapp.com/?page=1&sort=id,asc');
-    });
+describe('User Interface Tests', () => {
+  it('Should navigate to User Task page from Entities menu', () => {
+    cy.get('#entity-menu').click();
+    cy.get('#entity-menu > div > a:nth-child(2)').click();
+    cy.url().should('include', '/user-task');
+    cy.get('#user-task-heading').should('include.text', 'User Tasks');
+  }); 
+})
+    
 //8.Docs menu
-    it('Should navigate to Docs page from Docs menu', () => {
-       
-        cy.get('#docs-menu').click();
-        cy.get('#docs-menu > div > a').click();
-        cy.url().should('include', '/docs/docs');
-        cy.get('#select', { timeout: 10000 }).should('not.be.empty');
-    });
+it('Should navigate to Docs page from Docs menu', () => {
+  cy.get('#docs-menu').click(); // Находим меню с идентификатором #docs-menu и кликаем по нему
+  cy.get('#docs-menu > div > a').click(); // Затем находим ссылку на страницу документации и кликаем по ней
+  cy.url().should('include', '/docs/docs'); // Проверяем, что мы перешли на страницу документации
+  cy.get('#select', { timeout: 10000 }).should('not.be.empty'); // Проверяем, что элемент #select появился на странице
+});
+
 //9.Language
-    it('Should switch language and verify text', () => {
-      
-      cy.switchLanguage('English', 'Home');
-    cy.switchLanguage('Français', 'Accueil');
-    cy.switchLanguage('Русский', 'Главная');
-    cy.switchLanguage('Українська', 'Головна');
-    cy.switchLanguage('English', 'Home');
+it('Should switch language and verify text', () => {
+  cy.switchLanguage('English');
+  cy.contains('Home').should('be.visible');
+
+  cy.switchLanguage('Français');
+  cy.contains('Accueil').should('be.visible');
+
+  cy.switchLanguage('Русский');
+  cy.contains('Главная').should('be.visible');
+
+  cy.switchLanguage('Українська');
+  cy.contains('Головна').should('be.visible');
+
+  cy.switchLanguage('English');
+  cy.contains('Home').should('be.visible');
+});
+
 //10.Settings
-    it('Should navigate to User settings page from Account menu', () => {
-        
-        cy.get('#account-menu').click();
-        cy.get('#account-menu > div > a:nth-child(1)').click();
-        cy.url().should('include', '/account/settings');
-        cy.get('#settings-title').should('include.text', 'User settings for');
-    });
+describe('Settings', () => {
+  it('Should navigate to User settings page from Account menu', () => {
+    cy.get('#account-menu').click();
+    cy.get('[data-cy="settings"]').click();
+    cy.url().should('include', '/account/settings');
+    cy.get('#settings-title').should('include.text', 'User settings for');
+  });
+});
+
 //11. Password
-    it('Should navigate to Password page from Account menu', () => {
-        cy.get('#account-menu').click();
-        cy.get('[data-cy="passwordItem"]').click();
-        cy.url().should('include', '/account/password');
-        cy.get('#password-title').should('include.text', 'Password for');
-    });
-//12.Logout
-    it('Should logout', () => {
-        cy.logout();
-    });
-})
-})
+describe('Password', () => {
+  it('Should navigate to Password page from Account menu', () => {
+   cy.get('#account-menu').click();
+   cy.get('[data-cy="passwordItem"]').click();
+   cy.url().should('include', '/account/password');
+   cy.get('#password-title').should('contain.text', 'Password for');
+  });
+});
+  
+// 12. Logout Test
+describe('Logout Test', () => {
+  it('Should log out successfully', () => {
+    cy.get('#account-menu').click();
+    cy.get('[data-cy="logout"]').click();
+    cy.get('#login-item').should('contain.text','Sign in'); 
+  });
+});
+
+
