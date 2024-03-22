@@ -24,20 +24,20 @@ cy.visit('https://sqlverifier-live-6e21ca0ed768.herokuapp.com/?page=1&sort=id,as
 
 //
 // -- This is a child command --
-Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-    const { x, y } = options;
-
-    
-    cy.wrap(subject)
-      .trigger('mousedown', { which: 1, pageX: x, pageY: y })
-      .trigger('mousemove', { which: 1, pageX: x + 10, pageY: y + 10 });
+//Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
+    // const { x, y } = options;
+ 
+    // cy.wrap(subject)
+    //   .trigger('mousedown', { which: 1, pageX: x, pageY: y })
+    //   .trigger('mousemove', { which: 1, pageX: x + 10, pageY: y + 10 });
   
     
-    cy.wait(1000);
+    // cy.wait(1000);
       
-    cy.get('body').trigger('mouseup', { force: true });
-  });
+    // cy.get('body').trigger('mouseup', { force: true });
   
+
+
 //
 // -- This is a dual command --
 // Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
@@ -48,6 +48,9 @@ Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { 
 Cypress.Commands.add('switchLanguage', (language) => {
     cy.get('.dropdown.nav-item').click(); // Нажимаем на кнопку переключения языка
     cy.contains('.dropdown-menu-end .dropdown-item', language).click(); // Выбираем язык из выпадающего списка
+  });
+  Cypress.Commands.add('navigateToEntityMenu', () => {
+    cy.get('#entity-menu').click();
   });
       //Cypress.Commands.add('logout', () => {
     Cypress.Commands.add('logout', () => {
