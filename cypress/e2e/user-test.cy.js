@@ -8,11 +8,13 @@ describe('Page Load Test', () => {
 })
 describe('Page Tests', () => {
 //2.Authorisation
-it("Should log in with predefined credentials", () => {
-  const login = "student";
-  const password = "123456!";
-})
-})
+describe('Page Tests', () => {
+  beforeEach(() => {
+    cy.login(); 
+  });
+
+});
+
 //3.Login test
 describe('Login Test', () => {
   it('Should login with predefined credentials', () => {
@@ -120,5 +122,5 @@ describe('Logout Test', () => {
     cy.get('#login-item').should('contain.text','Sign in'); 
   });
 });
-
+});
 
