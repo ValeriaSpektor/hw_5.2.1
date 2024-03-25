@@ -1,0 +1,19 @@
+{
+  "validUser": {
+    "username": "testuser",
+    "password": "StrongPassword123"
+  },
+  "invalidUser": {
+    "username": " ",
+    "password": "123"
+  },
+  "passwordsDoNotMatch": {
+    "username": "testuser",
+    "password": "password123",
+    "confirmPassword": "password456"
+  },
+  "weakPassword": {
+    "username": "testuser",
+    "password": "123"
+  }
+}
