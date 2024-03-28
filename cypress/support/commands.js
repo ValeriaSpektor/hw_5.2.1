@@ -12,16 +12,16 @@
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
 it('Should login with predefined credentials', () => {
-cy.visit('https://sqlverifier-live-6e21ca0ed768.herokuapp.com/?page=1&sort=id,asc');
-    cy.get('#account-menu').click();
-    cy.get('#login-item').click();
-    cy.get('input[name="username"]').type('student');
-    cy.get('input[name="password"]').type('123456!');
-    cy.get('button[type="submit"]').click();
-    cy.url().should('include', 'https://sqlverifier-live-6e21ca0ed768.herokuapp.com/?page=1&sort=id,asc');
-    cy.contains('Sqlverifier').should('be.visible').click();
-});
-
+  cy.visit('https://sqlverifier-live-6e21ca0ed768.herokuapp.com/?page=1&sort=id,asc');
+      cy.get('#account-menu').click();
+      cy.get('#login-item').click();
+      cy.get('input[name="username"]').type('student');
+      cy.get('input[name="password"]').type('123456!');
+      cy.get('button[type="submit"]').click();
+      cy.url().should('include', 'https://sqlverifier-live-6e21ca0ed768.herokuapp.com/?page=1&sort=id,asc');
+      cy.contains('Sqlverifier').should('be.visible').click();
+  });
+  
 //
 // -- This is a child command --
 //Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
@@ -46,9 +46,11 @@ cy.visit('https://sqlverifier-live-6e21ca0ed768.herokuapp.com/?page=1&sort=id,as
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 Cypress.Commands.add('switchLanguage', (language) => {
-    cy.get('.dropdown.nav-item').click(); // Нажимаем на кнопку переключения языка
-    cy.contains('.dropdown-menu-end .dropdown-item', language).click(); // Выбираем язык из выпадающего списка
-  });
+  // Click on the dropdown item corresponding to the selected language
+  cy.get('.dropdown-menu-end .dropdown-item').contains(language).click({ force: true });
+});
+
+
   Cypress.Commands.add('navigateToEntityMenu', () => {
     cy.get('#entity-menu').click();
   });
@@ -57,6 +59,22 @@ Cypress.Commands.add('switchLanguage', (language) => {
     
         cy.get('#logout-button').click(); 
       });
+      Cypress.Commands.add('login', (username, password) => {
+        cy.visit('/');
+        cy.get('#account-menu').click();
+        cy.get('#login-item').click();
+        cy.get('input[name="username"]').type(username);
+        cy.get('input[name="password"]').type(password);
+        cy.get('button[type="submit"]').click();
+      });
+      
+      Cypress.Commands.add('goToPasswordPage', () => {
+        cy.get('#entity-menu').click();
+        cy.get('#entity-menu > div > a:nth-child(5)').click();
+      });
+            
+      
+
       
 
 
